@@ -47,3 +47,7 @@ Get over this excuse!! " I don't have time not to make my code a bit messy becau
 > "Leave the campground cleaner than you found it" <= code has to be left clean even over time. 
 
 The reason why our code rots is because every time is checked in, it becomes a little untidier. It will be such a better world if codes can simply got better as time passed! 
+
+
+
+---- 
