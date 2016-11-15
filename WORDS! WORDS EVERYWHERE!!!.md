@@ -2,4 +2,11 @@ WORDS! WORDS EVERYWHERE!!!
 
 myriad
 
-tempt
+temp
+
+abomination
+
+scintillation
+
+accrete
+

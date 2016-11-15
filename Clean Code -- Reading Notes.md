@@ -48,6 +48,30 @@ Get over this excuse!! " I don't have time not to make my code a bit messy becau
 
 The reason why our code rots is because every time is checked in, it becomes a little untidier. It will be such a better world if codes can simply got better as time passed! 
 
+## Chapter 2 - Functions
 
+> They should be smaller than that
 
----- ---
+**The golden rule of function: SMALL!!** 
+
+* Lines should not be 150 characters long ( possibly 80 the best?)
+* Functions should not be 100 lines ling (it even should hardly ever be 20 lines long ... s)
+* the blocks within *if, else, while* and so on should be one line long ....
+
+**Secondly, DO ONE THING!**
+
+> Functions should do one thing. They should do it well. They should do it only.
+
+But it does not mean the function should be only one line long :). It means the steps of the function are one level abstraction below the stated name of the function. 
+
+Function that has multiple sections are considered not doing one thing. E.g, a function that declares, initializes and carries out the task. 
+
+Mixing levels of abstraction within a function is always confusing (i.e, <u>*don't make*</u> *<u>concepts and details are all in one place</u>*). A perfect explanation of  symptom can be found at pg 67.  
+
+> **The Stepdown Rule:** <= It's importance can't be over-emphasized 
+>
+> We want every function to be **followed by those at the next level of abstraction** so that we can read the program, descending one level of abstraction at a time as we read down the list of functions. 
+
+**Switch Statements**
+
+It is a special case. By the nature of 'switch' statement, it's there to do N things. 
