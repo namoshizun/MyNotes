@@ -22,6 +22,8 @@ The author will not just teaching the 'feel good' principles. You will *read cod
 
 ## Chapter 1: Clean Code
 
+----
+
 ##### Why good code matters?
 
 * **There will be code**! The code is the indispensable language we need to describe specifications (especially detailed spec). 
@@ -50,7 +52,9 @@ The reason why our code rots is because every time is checked in, it becomes a l
 
 ## Chapter 2 - Functions
 
-> They should be smaller than that
+---
+
+>  They should be smaller than that
 
 ##### **The golden rule of function: SMALL!!** 
 
@@ -62,9 +66,9 @@ The reason why our code rots is because every time is checked in, it becomes a l
 
 > Functions should do one thing. They should do it well. They should do it only.
 
-But it does not mean the function should be only one line long :). It means the steps of the function are one level abstraction below the stated name of the function. 
+But it does not mean the function should be only one line long :). It means the steps of the function are **<u>*one level abstraction below*</u>** the stated name of the function. 
 
-Function that has multiple sections are considered not doing one thing. E.g, a function that declares, initializes and carries out the task. 
+Function that has multiple sections are considered not doing one thing. E.g, a function that declares, initializes and carries out the task <= LOL!
 
 Mixing levels of abstraction within a function is always confusing (i.e, <u>*don't make*</u> *<u>concepts and details are all in one place</u>*). A perfect explanation of  symptom can be found at pg 67.  
 
@@ -83,10 +87,8 @@ It is a special case. By the nature of 'switch' statement, it's there to do N th
 Rules to use switch structure:
 
 * Only appear once
-
 * Used to create polymorphic objects
-
-* #### hidden behind an inheritance (Abstract Factory)
+* hidden behind an inheritance (Abstract Factory)
 
 #### **Function Arguments**
 
@@ -127,4 +129,12 @@ This another a bit mind blowing experience ... a function that sets something an
 * Requires the complete re-compling and redeploying of all codes dependent on the Error Code Enum once any new error is added.  
 
 <u>**Error Handling is One Thing**</u>: So the error handling part should be extracted as a dedicated function, and it should just do the error handling! 
+
+### **<u>Conclusion</u>**
+
+Always Remember:
+
+* Every system is built from a <u>*domain-specific language*</u> designed by the programmers to describe that system.  Programmers use that language to <u>*tell a story*</u>, using <u>*classes as nouns*</u> and <u>*functions as verbs*</u>
+
+
 
