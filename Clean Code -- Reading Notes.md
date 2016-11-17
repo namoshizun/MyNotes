@@ -52,13 +52,13 @@ The reason why our code rots is because every time is checked in, it becomes a l
 
 > They should be smaller than that
 
-**The golden rule of function: SMALL!!** 
+##### **The golden rule of function: SMALL!!** 
 
 * Lines should not be 150 characters long ( possibly 80 the best?)
 * Functions should not be 100 lines ling (it even should hardly ever be 20 lines long ... s)
 * the blocks within *if, else, while* and so on should be one line long ....
 
-**Secondly, DO ONE THING!**
+======================= **DO ONE THING! =======================**
 
 > Functions should do one thing. They should do it well. They should do it only.
 
@@ -68,10 +68,63 @@ Function that has multiple sections are considered not doing one thing. E.g, a f
 
 Mixing levels of abstraction within a function is always confusing (i.e, <u>*don't make*</u> *<u>concepts and details are all in one place</u>*). A perfect explanation of  symptom can be found at pg 67.  
 
+***Another way to know that a function is doing more then "one thing" is if you can extract another function from it with a name that is not merely a restatement of its implementation.***
+
+
+
 > **The Stepdown Rule:** <= It's importance can't be over-emphasized 
 >
 > We want every function to be **followed by those at the next level of abstraction** so that we can read the program, descending one level of abstraction at a time as we read down the list of functions. 
 
-**Switch Statements**
+#### **Switch Statements**
 
-It is a special case. By the nature of 'switch' statement, it's there to do N things. 
+It is a special case. By the nature of 'switch' statement, it's there to do N things. We can avoid using switch statements which could turn out to be infinitely complex and doing infinitely many things by using <u>POLYMORPHISM</u>. 
+
+Rules to use switch structure:
+
+* Only appear once
+
+* Used to create polymorphic objects
+
+* #### hidden behind an inheritance (Abstract Factory)
+
+#### **Function Arguments**
+
+> Mind blowing: Three arguments should be avoided where possible; More than three requires very special justification - and then shouldn't' be used anyway
+
+The argument is at a different level of abstraction than the function name and <u>forces you to know a detail</u> that isn't particularly important at that point.
+
+Another important reason to use less argument is from the <u>*testing point of view*</u>. Imagine the difficult of writing all the test cases to ensure that all the various combinations of arguments work properly ... 
+
+Niladic function is the king, and Monadic function is considered better than higher ones. The benefits comes from readability (don't have to learn/unlearn inputs), semantics (more natural verb + noun form) and simplicity. 
+
+* **Monadic Form**:
+  * Querying on or Transforming [ return the result ];
+  * Reacting to an event [ return nothing];
+* **Dyadic Function**:  It is generally harder to understand than monadic form functions. The function becomes harder to reason and it's easier to put inputs in the correct order. 
+* **Triads**: Man in the book "why would you do this :) ? ". In normal cases where special practices needed to carry out or traditional patterns must be followed, you should not use it ....
+
+<u>Flag Arguments are UGLY</u> <= Another mind blowing statement lol! Why??!!! Well, it immediately loudly proclaim s that this function does AT LEAST TWO THINGS.
+
+**Have No Side Effects**
+
+> The side effects are lies. You function promises to do one thing, but it also does other hidden things (alerting the states unexpectedly)
+
+They are the devious criminals creating strange temporal couplings. order dependencies and sometimes betrays reader's trusts on the function name. 
+
+#### **Command Query Separation**
+
+> Function should either DO SOMETHING or ANSWER SOMETHING, but not both
+
+This another a bit mind blowing experience ... a function that sets something and returns a boolean to indicate success or fail can lead to confusions o.O. The solution is to separate the command and extract the checker code.
+
+#### **Error handling**
+
+<u>**Prefer Exceptions to returning error codes**</u>: 
+
+* Returning an error code is actually a subtle violation to command query separation. 
+* Also makes many if-else structure. 
+* Requires the complete re-compling and redeploying of all codes dependent on the Error Code Enum once any new error is added.  
+
+<u>**Error Handling is One Thing**</u>: So the error handling part should be extracted as a dedicated function, and it should just do the error handling! 
+

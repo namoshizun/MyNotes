@@ -10,3 +10,4 @@ scintillation
 
 accrete
 
+brittle
