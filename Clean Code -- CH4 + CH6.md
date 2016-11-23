@@ -50,6 +50,8 @@ public void setFitnessePort(int fitnessePort) {
 
 Don't need to write javadocs (or any other docstrings) for functions that are not intended for public consumptions. 
 
+### **Chapter 6 - Objects and Data Structures**
 
+#### Data Abstraction
 
-### **Chapter 5 - Formatting**
+...
