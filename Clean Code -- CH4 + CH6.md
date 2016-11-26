@@ -50,8 +50,43 @@ public void setFitnessePort(int fitnessePort) {
 
 Don't need to write javadocs (or any other docstrings) for functions that are not intended for public consumptions. 
 
+
+
 ### **Chapter 6 - Objects and Data Structures**
+
+> We want some class variables to be private, then why do we make so many getters and setters to make them look like public o.o?
 
 #### Data Abstraction
 
-...
+> Hiding implementation is about abstractions!!
+
+A few heuristics on good data abstraction:
+
+* Exposed <u>***interfaces still unmistakably represent inner data structure***</u>
+* Methods **<u>*enforces an access policy*</u>**
+* Interface names do not convey implementation details. 
+
+#### Data/Object Anti-Symmetry
+
+**Important**:  Objects hide their data behind abstractions; Data structure expose their data and have no meaningful functions. 
+
+^^^^^ THEY ARE VIRTUAL OPPOSITES (see the briliant example on ***pg95***) ^^^^^
+
+|            | Procedural                               | object oriented                          |
+| ---------- | :--------------------------------------- | ---------------------------------------- |
+| Opposite   | makes it easy to add new functions without changing the existing data structures | makes it easy to add new classes without changing existing functions |
+| Complement | makes it hard to add new data structures because all functions must change | makes it hard to add new functions because all the classes must change. |
+
+**Even more Important**: 'Everything is an object' is a MYTH! Sometimes you really do want simple data structures with procedures operating on them. 
+
+#### The Law of Demeter
+
+> Talk to friends, not to strangers. 
+
+Definition: A module should not know about the innards of the objects it manipulates.  Precisely,  a method *f* of a class *C* should only call the methods of these:
+
+* C
+* An object created by f
+* An object passed as an argument to f
+* An object held in an  instance variable of C
+
