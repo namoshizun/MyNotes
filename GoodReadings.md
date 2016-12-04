@@ -2,8 +2,6 @@
 
 [面向对象的弊端是什么](https://www.zhihu.com/question/20275578)
 
-
-
 ## Python
 
 [Raymond Hettinger - Beyond PEP 8 -- Best practices for beautiful intelligible code - PyCon 2015](https://www.youtube.com/watch?v=wf-BqAjZb8M)
@@ -14,11 +12,10 @@
 
 ...
 
-
-
 ## Javascript:
 
-...
+[JS快闪：当面试官问你“按值vs按引用传递”时，面试官在问什么](https://zhuanlan.zhihu.com/p/24080761)
 
+## Web
 
-
+[前段跨域整理](https://zhuanlan.zhihu.com/p/24101549)
