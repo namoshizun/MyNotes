@@ -16,7 +16,7 @@
 
 
 
-### Dynamically Load Component
+### Dynamic Component
 
 ##### Use Case:
 
