@@ -156,10 +156,58 @@ function set(target, key, value, receiver) {
 
 
 
-
-
 ### Asynchronous
 
+Once upon a time, long long ago, people are tutored by async programming (they are still tho) …. And there are multiple tricks tested to make the this async programming a bit less painful. 
 
+* Callback Function:
+  * passes a function that <u>***consumes***</u>  the result of callee function. 
+  * can easily lead to the **<u>*callback hell*</u>** 😈
+* Promie:
+  * a very promising solution to serialise & flattens the async calls. 
+  * but floods your code base with lots of Promise syntaxes. 
+* Generator:
+  * an interesting co-routine approach. Functions **<u>*executions are made interchangeable*</u>**, so each async calls can be lined up together, each can handover the the result as well as execution to its consumer routine. 
+  * poor semantics (w.t.f is next()) and complex routine management (in-and-out all the time). Other modules are needed to manage and automate routines (Thunkify, Co … ) 😣
+* Event Listening:
+* Publish & Subscribe
+
+All the above are different **<u>*PUSH&PULL*</u>** implementations with their own significances and sucks, until **async/await** is brought to JS (in the future) …. 
+
+
+
+**What is Async/Await?** It is just a super sweetie syntax sugar for generator 😊
+
+**How do we Async/Await?**
+
+```javascript
+asyncFunc = async function() {  // return type: Promise<any>
+  let result = await asyncCall(); 
+  // far clearer semantic; built-in task runner; yay!!
+}
+```
+
+**Exception Handling**
+
+Catch by caller:
+
+```javascript
+// 1. async function throws
+...() { throw new Error('Oouch!') }
+// 2. await Promise rejects
+...() { await Promise.reject('Oouch!') } // OR
+...() { return await Promise.reject('Oouch!') }
+```
+
+Catch inside the routine
+
+```javascript
+...() {
+  let result1 = asyncCall().catch(handler)
+  let result2 = asyncCall2().catch(handler)
+}
+```
+
+**Implementation**: [basically just wraps up the generator and its runner inside a function](http://es6.ruanyifeng.com/#docs/async#async函数)
 
 ### Decorator
