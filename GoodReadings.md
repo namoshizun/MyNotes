@@ -9,8 +9,8 @@
 [Python的隐藏特征](http://ictar.github.io/2015/09/27/[译]Python的隐藏特性(上)/)
 
 ## Angular2
-
-...
+[Angular Change Detection Explained](http://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html)
+[Immutability vs Encapsulation](https://vsavkin.com/immutability-vs-encapsulation-90549ab74487#.yna8c5isu)
 
 ## Javascript:
 
@@ -19,3 +19,4 @@
 ## Web
 
 [前段跨域整理](https://zhuanlan.zhihu.com/p/24101549)
+[如何在大型 Web 应用中保持数据的同步更新？](https://www.zhihu.com/question/37503039/answer/72388747)
