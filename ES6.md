@@ -2,9 +2,9 @@
 
 ### **Destructor**:
 
-*Based on pattern matching. Destructed target can be any **<u>iteratable</u>** object (object that has the iterator interface)*
+*Based on pattern matching. Destructed target can be any **iteratable** object (object that has the iterator interface)*
 
-* Left value must provide a pattern that is the <u>***subset***</u>  of the right value pattern.
+* Left value must provide a pattern that is the ***subset***  of the right value pattern.
 
   * ```javascript
     let [a, [b, d]] = [1, [2,3], 4]  👍
@@ -87,7 +87,7 @@ obj.time // 42
 | ---------------------------------------- | ---------------------------------------- |
 | get(target, propKey, receiver)           | …                                        |
 | set(target, propKey, value, receiver)    | …                                        |
-| has(target, propKey)                     | propKey in target (<u>NOT</u> hasOwnProerty) |
+| has(target, propKey)                     | propKey in target NOT hasOwnProerty)     |
 | deleteProperty(target, propKey)          | delete proxy[propKey]                    |
 | ownKeys(target)                          | Object.getOwnPropertyNames(proxy) & Object.keys(proxy) |
 | getOwnPropertyDescriptor(target, propKey) | SAME                                     |
@@ -161,18 +161,18 @@ function set(target, key, value, receiver) {
 Once upon a time, long long ago, people are tutored by async programming (they are still tho) …. And there are multiple tricks tested to make the this async programming a bit less painful. 
 
 * Callback Function:
-  * passes a function that <u>***consumes***</u>  the result of callee function. 
-  * can easily lead to the **<u>*callback hell*</u>** 😈
+  * passes a function that ***consumes***  the result of callee function. 
+  * can easily lead to the ***callback hell*** 😈
 * Promie:
   * a very promising solution to serialise & flattens the async calls. 
   * but floods your code base with lots of Promise syntaxes. 
 * Generator:
-  * an interesting co-routine approach. Functions **<u>*executions are made interchangeable*</u>**, so each async calls can be lined up together, each can handover the the result as well as execution to its consumer routine. 
+  * an interesting co-routine approach. Functions ***executions are made interchangeable***, so each async calls can be lined up together, each can handover the the result as well as execution to its consumer routine. 
   * poor semantics (w.t.f is next()) and complex routine management (in-and-out all the time). Other modules are needed to manage and automate routines (Thunkify, Co … ) 😣
 * Event Listening:
 * Publish & Subscribe
 
-All the above are different **<u>*PUSH&PULL*</u>** implementations with their own significances and sucks, until **async/await** is brought to JS (in the future) …. 
+All the above are different ***PUSH&PULL*** implementations with their own significances and sucks, until **async/await** is brought to JS (in the future) …. 
 
 
 

@@ -109,7 +109,81 @@ app.set('view engine', 'ejs' /* engine name*/)
 
 ### Chapter 4 - 7: Core
 
-TODO...
+#### Middleware
+
+> Most of Express code you write is middleware in one way or another
+
+**A refresh : where does middleware fit in?**
+
+"In Node, req/res objects are passed through just one function. But in Express, these objects are passed through an *array* of functions, called middleware stack."
+
+**Middleware Function and Error Handling**
+
+```javascript
+// middleware must either terminate by giving response or next(). Pg60 gives a good example
+function(request, response, next/* can be omitted */) { /***/}
+
+// actually it can also enter error mode to short-circuit the execution sequence.
+function(request, response, next) { next(new Error('ohhhhh!!!!')) } 
+
+// then a error handler plays in; it is like a 'dynamic middleware' that can fit in anywhere
+function(err, req, res, next) { next(err) /* it may continue t the next error handler or respond to terminate*/ }
+```
+
+<img src='./Pics/middleware.PNG' width="70%">
+
+
+
+#### Routing
+
+> routing maps HTTP verbs and URIs to specific code
+
+**Basic Syntax**
+
+```javascript
+app.get('/search', (req, res) => {
+  /* do something... */
+  /* note: if it is a query url, access the query params by req.query.q */
+})
+```
+
+**Route Parameterization**
+
+```javascript
+app.get('users/:userid', (res, req) => { /* access req.parans.userid */})
+```
+
+**Use regex in route matching** (more flexible, more determined)
+
+```javascript
+app,get(/^\/users\/(/d+)$/, (req, res) => {
+  /* access req.params[0] because it is no longer paramed */
+})
+```
+
+**Router**: (Pg75)
+
+> A router is an isolated instance of middleware and routes. Routers can be thought of as 'mini' applications only capable of performing middleware and routing.
+
+* A very nice way to define children routes separately :D  !!
+* Always use it when app grow big. 
+
+
+
+#### Building APIs
+
+*  Easy concept. Basically just introduces JSON syntaxes, the CRUD pattern and HTTP protocol (Pg93 & Pg100; this is actually a good-to-know part to have some understanding of HTTP conventions) 
+* API versioning: 
+  * Because you want back-wards comparability... 
+  * Ohhhhh now Router really comes to light@
+
+
+
+#### Views and Templates: Pug and EJS
+
+I DISLIKE IT :(,  so I will skip this chapter for now... 
+
+
 
 -----
 
@@ -142,18 +216,27 @@ A list of security issues or error-prone situations you should take care of:
 
 
 
+----
+
 #### Questions:
 
 Pg133: why setting {extended: false} in bodyParser makes parsing simpler and more secure???
 
-Pg133: which way is better for handling user authentication ?
+#### Good middleware:
 
-1. Use password ?
-2. Send an access token in header and verifies that manually in backend ?
+The built-in express.static middleware for serving static files (pg77)
 
+[Morgan: HTTP request logger middleware for node.js](https://github.com/expressjs/morgan)
+
+body-parser: for parsing POST request bodies
+
+cookie-parser: for parsing cookies from users
+
+compression: for compressing response to save on bytes
+
+Helmet: helps make security configs. 
 
 
 #### Good Links
 
 [Translation from SQL Terminology to Mongo Terminology](http://docs.mongodb.org/manual/reference/sql-comparison/index.html)
-
