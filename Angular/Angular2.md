@@ -2,8 +2,6 @@
 
 > And why it is so good  :D
 
-
-
 ### Dependency Injection ([Cookbook](https://angular.io/docs/ts/latest/cookbook/dependency-injection.html))
 
 #### Problem it solves:
@@ -112,6 +110,7 @@ export class ChildComponent {
 
 
 
+
 ------
 
 ### Component Interaction
@@ -200,3 +199,82 @@ export class Validators {
   } // this explains why validators must return null if control is alright
 }
 ```
+------
+
+### Lifecyle Hooks ( [Cookbook](https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html#!#hooks-purpose-timing) )
+
+**Important facts:**
+
+* Hook methods are called for a component **as well as its directives**!
+* Unidirectional data flow  forbids updates to the view after it is composed. So if a change source causes some changes to else where, that side effect should wait for a tick or we have to fire a change detection  for that side effect. 
+* The [impotence](https://angular.io/docs/ts/latest/guide/template-syntax.html#!#idempotence) principle of template must not be violated by change detection!!!
+
+| Hook                | Purpose                                  |
+| ------------------- | ---------------------------------------- |
+| OnChanges           | When re(sets) data-bound **input** properties |
+| OnInit              | When initializes directive/component     |
+| DoCheck             | **Called after every change detection cycle**, even when these changes happened in unrelated components; Use it to detect a change that Angular overlooked |
+| AfterContentInit    | After external **content** is projected into the component's view (after ng-content is set) |
+| AfterContentChecked | After external content is projected **and checked** |
+| AfterViewInit       | After **views and child views** are initialized |
+| AfterViewChecked    | After views and child views are initialized **and checked**; eg. called when a form control state has changed from pristine to touched ... |
+| OnDestroy           | Just before the directive/component is destroyed; Do cleanup (unsubscription, detach listeners, nullify instances ...) here! |
+
+
+
+----
+
+### Change Detection
+
+> 诸行无常，是生灭法 ...
+
+**How does it work**
+
+Angular2 has a best friend called zoneJs :D , actually, it is ngZone, a vairance of zonejs. This can be  depicted in code  (yay!):
+
+```typescript
+class ApplicationRef { // very simplified version of actual source
+  changeDetectorRefs:ChangeDetectorRef[] = [];
+  constructor(private zone: NgZone) {
+    this.zone.onTurnDone
+      .subscribe(() => this.zone.run(() => this.tick());
+  }s
+  tick() {
+    this.changeDetectorRefs
+      .forEach((ref) => ref.detectChanges());
+  }
+}
+```
+
+Every component has its own change detector (created at runtime), making it possible to fine-tune change detection strategies. In Angular2, because date flow is unidirectional, change  detection is done by traversing a ***change detector TREE***, meaning that there is no need to re-checking some states and hence a lot more efficient and predictable !
+
+**Optimization?**
+
+We can tell Angular to be a bit more relaxed by marking the parts of the application that changed their state. 
+
+* Use Immutable Data Type:
+  * Some components reply on its input properties besides which there is no other source of changes, so you can tell Angular to only trace the input for this component while firing change detections, and hence dramatically reduces the states to be verified. 
+  * Letting Angular to only further inspect the changes along this subtree if the dependent reference is changed.
+* Use Observable:
+  * That observable's reference wouldn't change at all and it just emits events! 
+  * Manually mark the path to be checked when a value is emitted from subscribed observable
+
+
+
+**Readings:**
+
+* [angular2中数据状态管理方案有哪些](https://www.zhihu.com/question/46662780)
+* [Zones in Angular](http://blog.thoughtram.io/angular/2016/02/01/zones-in-angular-2.html)
+* [ANGULAR CHANGE DETECTION EXPLAINED](http://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html)
+* [How I optimized Minesweeper using Angular 2 and Immutable.js to make it insanely fast](http://www.jvandemo.com/how-i-optimized-minesweeper-using-angular-2-and-immutable-js-to-make-it-insanely-fast/#)
+* [Change And Its Detection In JavaScript Frameworks](http://teropa.info/blog/2015/03/02/change-and-its-detection-in-javascript-frameworks.html)
+* [Immutability vs Encapsulation](https://vsavkin.com/immutability-vs-encapsulation-90549ab74487#.e9n68j42h)
+
+-----
+
+### Shadow DOM
+
+
+
+------
+
