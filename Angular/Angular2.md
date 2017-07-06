@@ -207,7 +207,7 @@ export class Validators {
 
 * Hook methods are called for a component **as well as its directives**!
 * Unidirectional data flow  forbids updates to the view after it is composed. So if a change source causes some changes to else where, that side effect should wait for a tick or we have to fire a change detection  for that side effect. 
-* The [impotence](https://angular.io/docs/ts/latest/guide/template-syntax.html#!#idempotence) principle of template must not be violated by change detection!!!
+* The [idempotence](https://angular.io/docs/ts/latest/guide/template-syntax.html#!#idempotence) principle of template must not be violated by change detection!!!
 
 | Hook                | Purpose                                  |
 | ------------------- | ---------------------------------------- |
